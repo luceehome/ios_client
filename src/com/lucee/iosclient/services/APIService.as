@@ -28,7 +28,7 @@ package com.lucee.iosclient.services {
 		public function APIService() : void {
 			_urlRequest = new URLRequest("");
 			_urlLoader = new URLLoader();
-			_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onStateIOError);
+			_urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onStateIOError); 
 		}
 
 		public function checkState() : void {
