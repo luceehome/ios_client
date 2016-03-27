@@ -1,8 +1,0 @@
-/Users/marvin/Documents/workspace/flex_sdk_4.6/bin/adt
--installApp
--platform
-ios
--device
-12
--package
-/Users/marvin/Documents/workspace/lucylee/as3/lucy_iosclient/bin/lucy_iosclient.ipa
