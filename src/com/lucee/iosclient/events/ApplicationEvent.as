@@ -8,6 +8,7 @@ package com.lucee.iosclient.events {
 		public static const BOOT : String = "boot";
 		public static const BOOT_COMPLETE : String = "bootComplete";
 		public static const BACK_BTN_CLICKED : String = "backBtnClicked";
+		public static const LAUNCH : String = "launch";
 
 		public function ApplicationEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) {
 			super(type, bubbles, cancelable);

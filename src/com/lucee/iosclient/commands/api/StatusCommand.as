@@ -27,10 +27,8 @@ package com.lucee.iosclient.commands.api {
 		[Inject]
 		public var apiService : APIService;
 
-		
 		[Inject]
 		public var apiDataModel : APIDataModel;
-		
 
 		override public function execute() : void {
 			Debug.log("api.StatusCommand - init.");
@@ -43,11 +41,13 @@ package com.lucee.iosclient.commands.api {
 		}
 
 		private function onApiStatus(event : APIDataEvent) : void {
-			eventDispatcher.removeEventListener(APIDataEvent.API_RESPONSE, onApiStatus);
 			apiDataModel.status = event.data;
-			_resolve();
+			if (apiDataModel.status.indexOf('WAITING') < 0) {
+				eventDispatcher.removeEventListener(APIDataEvent.API_RESPONSE, onApiStatus);
+				_resolve();
+			}
 		}
-		
+
 		private function _resolve() : void {
 			Debug.log("api.StatusCommand - done.");
 			dispatchComplete(true);

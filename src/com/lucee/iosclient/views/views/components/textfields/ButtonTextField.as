@@ -4,10 +4,10 @@ package com.lucee.iosclient.views.views.components.textfields {
 	/**
 	 * @author marvin
 	 */
-	public class MainMenuTextfield extends DefaultTextfield {
-		public function MainMenuTextfield() {
-			_textformat.letterSpacing = 13;
-			_textformat.size = 68;
+	public class ButtonTextField extends DefaultTextfield {
+		public function ButtonTextField() {
+			_textformat.letterSpacing = 8;
+			_textformat.size = 42;
 			_textformat.align = TextFormatAlign.CENTER;
 			
 			initialize();

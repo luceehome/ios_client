@@ -1,21 +1,26 @@
 package com.lucee.iosclient.configs {
-	import com.lucee.iosclient.models.APIDataModel;
+	import com.lucee.iosclient.views.mediatos.ConfigurationViewMediator;
+	import com.lucee.iosclient.views.views.ConfigurationView;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IContext;
 	import robotlegs.bender.framework.api.IInjector;
 
+	import com.lucee.iosclient.commands.LaunchCommand;
 	import com.lucee.iosclient.commands.macros.BootMacro;
 	import com.lucee.iosclient.controller.SocketController;
 	import com.lucee.iosclient.events.ApplicationEvent;
+	import com.lucee.iosclient.models.APIDataModel;
 	import com.lucee.iosclient.models.ApplicationModel;
 	import com.lucee.iosclient.models.DevicesDataModel;
 	import com.lucee.iosclient.services.APIService;
 	import com.lucee.iosclient.views.mediatos.ApplicationMediator;
+	import com.lucee.iosclient.views.mediatos.BootViewMediator;
 	import com.lucee.iosclient.views.mediatos.IphoneHeaderMediator;
 	import com.lucee.iosclient.views.mediatos.MainMenuMediator;
 	import com.lucee.iosclient.views.views.ApplicationView;
+	import com.lucee.iosclient.views.views.BootView;
 	import com.lucee.iosclient.views.views.IPhoneHeaderView;
 	import com.lucee.iosclient.views.views.MainMenuView;
 
@@ -46,15 +51,18 @@ package com.lucee.iosclient.configs {
 
 		public function configure() : void {
 			commandmap.map(ApplicationEvent.BOOT).toCommand(BootMacro);
-			injectormap.map(ApplicationModel).asSingleton();
+			commandmap.map(ApplicationEvent.LAUNCH).toCommand(LaunchCommand);
 
 //			var socketController = new SocketController();
+			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(SocketController).asSingleton();
 			injectormap.map(APIService).asSingleton();
 			injectormap.map(APIDataModel).asSingleton();
 			injectormap.map(DevicesDataModel).asSingleton();
 
+			mediatormap.map(ConfigurationView).toMediator(ConfigurationViewMediator);
 			mediatormap.map(ApplicationView).toMediator(ApplicationMediator);
+			mediatormap.map(BootView).toMediator(BootViewMediator);
 			mediatormap.map(MainMenuView).toMediator(MainMenuMediator);
 			mediatormap.map(IPhoneHeaderView).toMediator(IphoneHeaderMediator);
 			context.afterInitializing(_init);
@@ -65,7 +73,7 @@ package com.lucee.iosclient.configs {
 		}
 
 		private function _onAppInvoke(event : InvokeEvent) : void {
-			_applicationEvent = new ApplicationEvent(ApplicationEvent.BOOT, true, false);
+			_applicationEvent = new ApplicationEvent(ApplicationEvent.LAUNCH, true, false);
 			eventDispatcher.dispatchEvent(_applicationEvent);
 		}
 	}

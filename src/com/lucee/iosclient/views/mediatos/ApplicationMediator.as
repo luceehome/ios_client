@@ -1,7 +1,8 @@
 package com.lucee.iosclient.views.mediatos {
+	import com.lucee.iosclient.models.APIDataModel;
+
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
-	import com.lucee.iosclient.events.APIDataEvent;
 	import com.lucee.iosclient.events.ApplicationEvent;
 	import com.lucee.iosclient.events.MainMenuEvent;
 	import com.lucee.iosclient.services.APIService;
@@ -18,6 +19,9 @@ package com.lucee.iosclient.views.mediatos {
 
 		[Inject]
 		public var apiService : APIService;
+
+		[Inject]
+		public var apiDataModel : APIDataModel;
 
 		override public function initialize() : void {
 			addContextListener(ApplicationEvent.BOOT_COMPLETE, _onBootFinished);
@@ -41,7 +45,7 @@ package com.lucee.iosclient.views.mediatos {
 		}
 
 		private function _onBootFinished(event : ApplicationEvent) : void {
-			view.build();
+			view.initialStart();
 		}
 	}
 }

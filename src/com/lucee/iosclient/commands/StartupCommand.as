@@ -5,7 +5,6 @@ package com.lucee.iosclient.commands {
 
 	import com.beautifycode.AIRUpdateHelper.AIRUpdateHelper;
 	import com.beautifycode.helpers.Debug;
-	import com.lucee.iosclient.events.APIDataEvent;
 	import com.lucee.iosclient.models.ApplicationModel;
 	import com.lucee.iosclient.services.APIService;
 	import com.lucee.iosclient.views.views.ApplicationView;
@@ -35,12 +34,11 @@ package com.lucee.iosclient.commands {
 			contextView.view.addChild(_applicationView);
 
 			_setupNativeWindow();
-						_resolve();
-			
-//			_checkApiStatus();
+			_resolve();
+
+			// _checkApiStatus();
 		}
 
-		
 		private function _setupNativeWindow() : void {
 			applicationModel.setupNativeWindow(contextView.view.stage.nativeWindow);
 		}

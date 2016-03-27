@@ -1,20 +1,36 @@
 package com.lucee.iosclient.views.views.components.textfields {
 	import flash.display.Sprite;
+	import flash.events.FocusEvent;
 	import flash.text.TextField;
+	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 
 	/**
 	 * @author marvin
 	 */
-	public class DefaultTextfield extends Sprite {
+	public class DefaultInputTextField extends Sprite {
 		public var _textformat : TextFormat;
 		public var _textfield : TextField;
 		public var _font : ElegantLux;
+		private var _line : Sprite;
 
-		public function DefaultTextfield() {
+		public function DefaultInputTextField() {
 			_font = new ElegantLux();
 			_textformat = new TextFormat();
 			_textfield = new TextField();
+
+			_textformat.letterSpacing = 13;
+			_textformat.size = 48;
+			_textformat.align = TextFormatAlign.CENTER;
+
+			_line = new Sprite();
+			_line.graphics.beginFill(0xFFFFFF, .5);
+			_line.graphics.drawRect(0, 0, 550, 2);
+			_line.y = 80;
+			_line.x = 100;
+   
+			initialize() ;
 		}
 
 		public function setText(string : String) : void {
@@ -26,15 +42,23 @@ package com.lucee.iosclient.views.views.components.textfields {
 			_textformat.color = 0xFFFFFF;
 
 			_textfield.defaultTextFormat = _textformat;
+			_textfield.type = TextFieldType.INPUT;
+			_textfield.addEventListener(FocusEvent.FOCUS_IN, onTextfieldFocus);
+
 			_textfield.selectable = false;
 			_textfield.embedFonts = true;
 			_textfield.width = 750;
 			_textfield.height = 86;
 
 			addChild(_textfield);
+			addChild(_line);
 		}
-		
-		function redraw():void {
+
+		private function onTextfieldFocus(event : FocusEvent) : void {
+			_textfield.text = "";
+		}
+
+		function redraw() : void {
 			_textfield.setTextFormat(_textformat);
 			_textfield.defaultTextFormat = _textformat;
 		}

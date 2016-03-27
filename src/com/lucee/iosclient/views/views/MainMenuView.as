@@ -57,24 +57,13 @@ package com.lucee.iosclient.views.views {
 			return _devicesButton;
 		}
 
-		public function set devicesButton(devicesButton : MainMenuButton) : void {
-			_devicesButton = devicesButton;
-		}
-
 		public function get timersButton() : MainMenuButton {
 			return _timersButton;
-		}
-
-		public function set timersButton(timersButton : MainMenuButton) : void {
-			_timersButton = timersButton;
 		}
 
 		public function get presetsButton() : MainMenuButton {
 			return _presetsButton;
 		}
 
-		public function set presetsButton(presetsButton : MainMenuButton) : void {
-			_presetsButton = presetsButton;
-		}
 	}
 }

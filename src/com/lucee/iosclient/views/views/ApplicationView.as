@@ -3,7 +3,6 @@ package com.lucee.iosclient.views.views {
 
 	import flash.display.Sprite;
 	import flash.events.TransformGestureEvent;
-	import flash.utils.setTimeout;
 
 	/**
 	 * @author marvin
@@ -12,39 +11,29 @@ package com.lucee.iosclient.views.views {
 		private var _mainMenuView : MainMenuView;
 		private var _presetView : PresetView;
 		private var _bootView : BootView;
-		private static var CROSSFADE_TIME : int = 1.5;
 		private var _applicationBackground : ApplicationBackground;
-		private var _oldInterface : OldInterfaceView;
 		private var _deviceView : DeviceView;
 		private var _headerView : IPhoneHeaderView;
 
 		public function ApplicationView() {
 			Debug.log("== ApplicationView: construct()");
+
 			Debug.log("== ApplicationView: showLoadingView()");
-			
-			_applicationBackground = new ApplicationBackground();
-			addChild(_applicationBackground);
-			
-			_bootView = new BootView();
-			_bootView.show();
-			addChild(_bootView);
+			showLoadingView();
 		}
 
-		public function build() : void {		
+		public function build() : void {
 			_mainMenuView = new MainMenuView();
 			_presetView = new PresetView();
 			_deviceView = new DeviceView();
 			_headerView = new IPhoneHeaderView();
-			// _oldInterface = new OldInterfaceView();
 
-			addChild(_mainMenuView);
 			addChild(_presetView);
 			addChild(_deviceView);
+			addChild(_mainMenuView);
 			addChild(_headerView);
-			// addChild(_oldInterface);
 
-			showBootScreen();
-			enableSwipe();
+			// enableSwipe();
 		}
 
 		private function enableSwipe() : void {
@@ -59,20 +48,27 @@ package com.lucee.iosclient.views.views {
 			}
 		}
 
-		private function showBootScreen() : void {
-			_bootView.show();
-			setTimeout(showMainMenu, 1000);
+		private function showLoadingView() : void {
+			_bootView = new BootView();
+			_bootView.show(1);
+			addChild(_bootView);
 		}
 
-		public function showMainMenu(bySwipe:Boolean=false) : void {
-			_bootView.hide();
+		public function initialStart() : void {
+			build();
+			_bootView.hide(2);
+			_mainMenuView.show(4);
+		}
+
+		public function showMainMenu(bySwipe : Boolean = false) : void {
 			_presetView.hide();
-			if(bySwipe) _deviceView.hideBySwipe();
+
+			if (bySwipe) _deviceView.hideBySwipe();
 			else _deviceView.hide();
+
 			// _timersView.hide();
 			_headerView.hide();
 			_mainMenuView.show(1);
-
 		}
 
 		public function showPresets() : void {
@@ -88,10 +84,6 @@ package com.lucee.iosclient.views.views {
 			_mainMenuView.hide();
 			_deviceView.show(.7);
 			_headerView.show();
-		}
-
-		public function showApiError() : void {
- 			_bootView.showError();
 		}
 	}
 }

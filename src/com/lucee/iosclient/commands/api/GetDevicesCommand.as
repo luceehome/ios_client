@@ -39,6 +39,8 @@ package com.lucee.iosclient.commands.api {
 
 			if (apiDataModel.status == "OK") {
 				_getDevices();
+			} else {
+				_resolve();
 			}
 		}
 
