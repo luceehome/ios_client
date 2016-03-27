@@ -1,0 +1,11 @@
+/cert
+/lib
+
+*.ipa
+*.fla
+*.psd
+*.swf
+*.stamp
+.settings/
+.project
+.DS_Store
