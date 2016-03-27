@@ -80,6 +80,12 @@ package com.lucee.iosclient.views.views {
 			}
 		}
 
+		public function hideBySwipe() : void {
+			for (var i : int; i < _devices.length; i++) {
+				TweenLite.to(_devices[i], AnimationModel.FADE_OUT_TIME, {x:750, autoAlpha:0, ease:Strong.easeIn, delay:(i / 60), onComplete:repositionItems, onCompleteParams:[_devices[i]]});
+			}
+		}
+
 		private function repositionItems(item : DeviceMenuButton) : void {
 			item.y = item.origY;
 			item.x = item.origX;
@@ -89,10 +95,5 @@ package com.lucee.iosclient.views.views {
 			return _stehlampeDevice;
 		}
 
-		public function hideBySwipe() : void {
-			for (var i : int; i < _devices.length; i++) {
-				TweenLite.to(_devices[i], AnimationModel.FADE_OUT_TIME, {x:750, autoAlpha:0, ease:Strong.easeIn, delay:(i / 6), onComplete:repositionItems, onCompleteParams:[_devices[i]]});
-			}
-		}
 	}
 }

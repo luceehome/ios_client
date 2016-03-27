@@ -27,5 +27,9 @@ package com.lucee.iosclient.views.views {
 		public function hide() : void {
 			TweenLite.to(_loadingTF, 1, {y:"-20", autoAlpha:0, ease:Strong.easeIn});
 		}
+
+		public function showError() : void {
+			_loadingTF.setText("API-ERROR");
+		}
 	}
 }

@@ -4,10 +4,12 @@ package com.lucee.iosclient.views.views.components {
 
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
 
 	/**
 	 * @author marvin
@@ -62,18 +64,35 @@ package com.lucee.iosclient.views.views.components {
 		}
 
 		private function onLampOnClick(event : MouseEvent) : void {
-			var ur : URLRequest = new URLRequest(_onReq);
-			ur.method = URLRequestMethod.GET;
+			var ur : URLRequest = new URLRequest("http://192.168.2.147:3000/api/cmd");
+			ur.method = URLRequestMethod.POST;
+			var cmdObject : Object = new Object();
+			cmdObject['cmd'] = "hallo alexei";
+			var messages : Array = new Array();
+			messages.push({"nombreArchivo":"value"});
+			messages.push({"image":"value"});
+
+			var vars: URLVariables = new URLVariables();
+			vars.cmd = "set Kugellampe on"
+			
+			ur.data = vars;
+
 			var url : URLLoader = new URLLoader();
+
+			url.addEventListener(Event.COMPLETE, onA);
 			url.load(ur);
 		}
 
+		private function onA(event : Event) : void {
+			trace(event.target.data);
+		}
+
 		private function onLampOffClick(event : MouseEvent) : void {
-			var ur : URLRequest = new URLRequest(_offReq);
-			trace('_offReq: ' + (_offReq));
-			ur.method = URLRequestMethod.GET;
-			var url : URLLoader = new URLLoader();
-			url.load(ur);
+			// var ur : URLRequest = new URLRequest(_offReq);
+			// trace('_offReq: ' + (_offReq));
+			// ur.method = URLRequestMethod.GET;
+			// var url : URLLoader = new URLLoader();
+			// url.load(ur);
 		}
 
 		public function set title(title : String) : void {
@@ -89,7 +108,7 @@ package com.lucee.iosclient.views.views.components {
 		public function setOnReq(r : String) : void {
 			_onReq = r;
 		}
-		
+
 		public function setOffReq(r : String) : void {
 			_offReq = r;
 		}

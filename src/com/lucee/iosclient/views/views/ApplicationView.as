@@ -1,4 +1,6 @@
 package com.lucee.iosclient.views.views {
+	import com.beautifycode.helpers.Debug;
+
 	import flash.display.Sprite;
 	import flash.events.TransformGestureEvent;
 	import flash.utils.setTimeout;
@@ -17,19 +19,24 @@ package com.lucee.iosclient.views.views {
 		private var _headerView : IPhoneHeaderView;
 
 		public function ApplicationView() {
+			Debug.log("== ApplicationView: construct()");
+			Debug.log("== ApplicationView: showLoadingView()");
+			
+			_applicationBackground = new ApplicationBackground();
+			addChild(_applicationBackground);
+			
+			_bootView = new BootView();
+			_bootView.show();
+			addChild(_bootView);
 		}
 
-		public function build() : void {
-			_applicationBackground = new ApplicationBackground();
-			_bootView = new BootView();
+		public function build() : void {		
 			_mainMenuView = new MainMenuView();
 			_presetView = new PresetView();
 			_deviceView = new DeviceView();
 			_headerView = new IPhoneHeaderView();
 			// _oldInterface = new OldInterfaceView();
 
-			addChild(_applicationBackground);
-			addChild(_bootView);
 			addChild(_mainMenuView);
 			addChild(_presetView);
 			addChild(_deviceView);
@@ -42,12 +49,11 @@ package com.lucee.iosclient.views.views {
 
 		private function enableSwipe() : void {
 			addEventListener(TransformGestureEvent.GESTURE_SWIPE, onSwipe);
-
-
 		}
 
 		private function onSwipe(event : TransformGestureEvent) : void {
 			if (event.offsetX == 1) {
+				trace(event.stageX);
 				// User swiped towards right
 				showMainMenu(true);
 			}
@@ -61,7 +67,8 @@ package com.lucee.iosclient.views.views {
 		public function showMainMenu(bySwipe:Boolean=false) : void {
 			_bootView.hide();
 			_presetView.hide();
-			_deviceView.hideBySwipe();
+			if(bySwipe) _deviceView.hideBySwipe();
+			else _deviceView.hide();
 			// _timersView.hide();
 			_headerView.hide();
 			_mainMenuView.show(1);
@@ -81,6 +88,10 @@ package com.lucee.iosclient.views.views {
 			_mainMenuView.hide();
 			_deviceView.show(.7);
 			_headerView.show();
+		}
+
+		public function showApiError() : void {
+ 			_bootView.showError();
 		}
 	}
 }

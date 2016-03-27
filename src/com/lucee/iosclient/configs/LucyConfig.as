@@ -1,7 +1,5 @@
 package com.lucee.iosclient.configs {
-	import com.lucee.iosclient.views.mediatos.IphoneHeaderMediator;
-	import com.lucee.iosclient.views.views.IPhoneHeaderView;
-	import com.lucee.iosclient.views.mediatos.MainMenuMediator;
+	import com.lucee.iosclient.models.APIDataModel;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
@@ -12,8 +10,13 @@ package com.lucee.iosclient.configs {
 	import com.lucee.iosclient.controller.SocketController;
 	import com.lucee.iosclient.events.ApplicationEvent;
 	import com.lucee.iosclient.models.ApplicationModel;
+	import com.lucee.iosclient.models.DevicesDataModel;
+	import com.lucee.iosclient.services.APIService;
 	import com.lucee.iosclient.views.mediatos.ApplicationMediator;
+	import com.lucee.iosclient.views.mediatos.IphoneHeaderMediator;
+	import com.lucee.iosclient.views.mediatos.MainMenuMediator;
 	import com.lucee.iosclient.views.views.ApplicationView;
+	import com.lucee.iosclient.views.views.IPhoneHeaderView;
 	import com.lucee.iosclient.views.views.MainMenuView;
 
 	import flash.desktop.NativeApplication;
@@ -47,6 +50,9 @@ package com.lucee.iosclient.configs {
 
 //			var socketController = new SocketController();
 			injectormap.map(SocketController).asSingleton();
+			injectormap.map(APIService).asSingleton();
+			injectormap.map(APIDataModel).asSingleton();
+			injectormap.map(DevicesDataModel).asSingleton();
 
 			mediatormap.map(ApplicationView).toMediator(ApplicationMediator);
 			mediatormap.map(MainMenuView).toMediator(MainMenuMediator);

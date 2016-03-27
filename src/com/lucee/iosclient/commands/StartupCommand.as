@@ -5,8 +5,12 @@ package com.lucee.iosclient.commands {
 
 	import com.beautifycode.AIRUpdateHelper.AIRUpdateHelper;
 	import com.beautifycode.helpers.Debug;
+	import com.lucee.iosclient.events.APIDataEvent;
 	import com.lucee.iosclient.models.ApplicationModel;
+	import com.lucee.iosclient.services.APIService;
 	import com.lucee.iosclient.views.views.ApplicationView;
+
+	import flash.events.IEventDispatcher;
 
 	/**
 	 * @author marvin
@@ -17,6 +21,12 @@ package com.lucee.iosclient.commands {
 
 		[Inject]
 		public var applicationModel : ApplicationModel;
+
+		[Inject]
+		public var eventDispatcher : IEventDispatcher;
+
+		[Inject]
+		public var apiService : APIService;
 		private var _applicationView : ApplicationView;
 
 		override public function execute() : void {
@@ -25,10 +35,12 @@ package com.lucee.iosclient.commands {
 			contextView.view.addChild(_applicationView);
 
 			_setupNativeWindow();
-			_checkVersion(false);
-			_resolve();
+						_resolve();
+			
+//			_checkApiStatus();
 		}
 
+		
 		private function _setupNativeWindow() : void {
 			applicationModel.setupNativeWindow(contextView.view.stage.nativeWindow);
 		}
@@ -51,8 +63,8 @@ package com.lucee.iosclient.commands {
 		}
 
 		private function _resolve() : void {
-			dispatchComplete(true);
 			Debug.log("StartupCommand - done.");
+			dispatchComplete(true);
 		}
 	}
 }
