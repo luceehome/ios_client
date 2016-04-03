@@ -35,8 +35,6 @@ package com.lucee.iosclient.commands {
 
 			_setupNativeWindow();
 			_resolve();
-
-			// _checkApiStatus();
 		}
 
 		private function _setupNativeWindow() : void {

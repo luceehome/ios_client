@@ -2,6 +2,7 @@ package com.lucee.iosclient.views.views {
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Strong;
 	import com.lucee.iosclient.models.AnimationModel;
+	import com.lucee.iosclient.models.MainMenuModel;
 	import com.lucee.iosclient.views.views.components.MainMenuButton;
 
 	import flash.display.Sprite;
@@ -16,17 +17,17 @@ package com.lucee.iosclient.views.views {
 
 		public function MainMenuView() {
 			_presetsButton = new MainMenuButton();
-			_presetsButton.title = "PRESETS";
+			_presetsButton.title = MainMenuModel.PRESETS_BTN_TITLE;
 			_presetsButton.y = 500;
 			_presetsButton.alpha = 0;
 
 			_timersButton = new MainMenuButton();
-			_timersButton.title = "TIMERS";
+			_timersButton.title = MainMenuModel.TIMERS_BTN_TITLE;
 			_timersButton.y = 650;
 			_timersButton.alpha = 0;
 
 			_devicesButton = new MainMenuButton();
-			_devicesButton.title = "DEVICES";
+			_devicesButton.title = MainMenuModel.DEVICES_BTN_TITLE;
 			_devicesButton.y = 800;
 			_devicesButton.alpha = 0;
 

@@ -7,5 +7,6 @@ package com.lucee.iosclient.models {
 		public static const FADE_OUT_TIME : Number = .5;
 		public static const ITEM_FADEOUT_OFFSET_DELAY : Number = 0.3;
 		public static const ITEM_FADEIN_OFFSET_DELAY : Number = 0.3;
+		public static const PIECE_DELAY : Number = 0.55;
 	}
 }

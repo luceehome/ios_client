@@ -9,14 +9,14 @@ package com.lucee.iosclient.views.views {
 	/**
 	 * @author marvin
 	 */
-	public class IPhoneHeaderView extends Sprite {
+	public class ApplicationHeaderView extends Sprite {
 		private var _background : Sprite = new Sprite();
 		private var _headerHeight : int = 150;
 		private var _backButton : Sprite;
 		private var _backButtonBitmap : Bitmap;
 		private var _title : TitleTextfield;
 
-		public function IPhoneHeaderView() {
+		public function ApplicationHeaderView() {
 			_background = new Sprite();
 			_background.graphics.beginFill(0x1b1f20);
 			_background.graphics.drawRect(0, 0, 750, _headerHeight);

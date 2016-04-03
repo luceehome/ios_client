@@ -10,7 +10,7 @@ package com.lucee.iosclient.views.views {
 	/**
 	 * @author marvin
 	 */
-	public class DeviceView extends Sprite {
+	public class DevicesView extends Sprite {
 		private var _stehlampeDevice : DeviceMenuButton;
 		private var _devices : Array = new Array();
 		private var _kugellampeDevice : DeviceMenuButton;
@@ -19,7 +19,7 @@ package com.lucee.iosclient.views.views {
 		private var _deviceList : Sprite;
 		private var _scrollableList : ScrollableList;
 
-		public function DeviceView() {
+		public function DevicesView() {
 			_deviceList = new Sprite();
 			_stehlampeDevice = new DeviceMenuButton();
 			_stehlampeDevice.title = "STEHLAMPE";

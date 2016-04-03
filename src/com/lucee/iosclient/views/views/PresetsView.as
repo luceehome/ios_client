@@ -5,10 +5,10 @@ package com.lucee.iosclient.views.views {
 	/**
 	 * @author marvin
 	 */
-	public class PresetView extends Sprite {
+	public class PresetsView extends Sprite implements IApplicationView {
 		private var _netflix : PresetsMenuButton;
 
-		public function PresetView() {
+		public function PresetsView() {
 			_netflix = new PresetsMenuButton();
 			
 		}
@@ -17,7 +17,7 @@ package com.lucee.iosclient.views.views {
 			
 		}
 
-		public function show() : void {
+		public function show(initialDelay:int) : void {
 		}
 	}
 }

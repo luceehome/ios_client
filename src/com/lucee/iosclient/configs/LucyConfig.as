@@ -1,6 +1,4 @@
 package com.lucee.iosclient.configs {
-	import com.lucee.iosclient.views.mediatos.ConfigurationViewMediator;
-	import com.lucee.iosclient.views.views.ConfigurationView;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
@@ -17,12 +15,20 @@ package com.lucee.iosclient.configs {
 	import com.lucee.iosclient.services.APIService;
 	import com.lucee.iosclient.views.mediatos.ApplicationMediator;
 	import com.lucee.iosclient.views.mediatos.BootViewMediator;
+	import com.lucee.iosclient.views.mediatos.ConfigurationViewMediator;
+	import com.lucee.iosclient.views.mediatos.DevicesViewMediator;
 	import com.lucee.iosclient.views.mediatos.IphoneHeaderMediator;
 	import com.lucee.iosclient.views.mediatos.MainMenuMediator;
+	import com.lucee.iosclient.views.mediatos.PresetsViewMediator;
+	import com.lucee.iosclient.views.mediatos.TimersViewMediator;
+	import com.lucee.iosclient.views.views.ApplicationHeaderView;
 	import com.lucee.iosclient.views.views.ApplicationView;
 	import com.lucee.iosclient.views.views.BootView;
-	import com.lucee.iosclient.views.views.IPhoneHeaderView;
+	import com.lucee.iosclient.views.views.ConfigurationView;
+	import com.lucee.iosclient.views.views.DevicesView;
 	import com.lucee.iosclient.views.views.MainMenuView;
+	import com.lucee.iosclient.views.views.PresetsView;
+	import com.lucee.iosclient.views.views.TimersView;
 
 	import flash.desktop.NativeApplication;
 	import flash.events.IEventDispatcher;
@@ -48,12 +54,11 @@ package com.lucee.iosclient.configs {
 		public var eventDispatcher : IEventDispatcher;
 		private var _applicationEvent : ApplicationEvent;
 
-
 		public function configure() : void {
 			commandmap.map(ApplicationEvent.BOOT).toCommand(BootMacro);
 			commandmap.map(ApplicationEvent.LAUNCH).toCommand(LaunchCommand);
 
-//			var socketController = new SocketController();
+			// var socketController = new SocketController();
 			injectormap.map(ApplicationModel).asSingleton();
 			injectormap.map(SocketController).asSingleton();
 			injectormap.map(APIService).asSingleton();
@@ -63,8 +68,14 @@ package com.lucee.iosclient.configs {
 			mediatormap.map(ConfigurationView).toMediator(ConfigurationViewMediator);
 			mediatormap.map(ApplicationView).toMediator(ApplicationMediator);
 			mediatormap.map(BootView).toMediator(BootViewMediator);
+
 			mediatormap.map(MainMenuView).toMediator(MainMenuMediator);
-			mediatormap.map(IPhoneHeaderView).toMediator(IphoneHeaderMediator);
+			mediatormap.map(PresetsView).toMediator(PresetsViewMediator);
+			mediatormap.map(TimersView).toMediator(TimersViewMediator);
+			mediatormap.map(DevicesView).toMediator(DevicesViewMediator);
+
+			mediatormap.map(ApplicationHeaderView).toMediator(IphoneHeaderMediator);
+
 			context.afterInitializing(_init);
 		}
 

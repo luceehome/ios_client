@@ -1,4 +1,7 @@
 package com.lucee.iosclient.views.views.components.textfields {
+	import com.greensock.TweenLite;
+	import com.greensock.easing.Strong;
+
 	import flash.display.Sprite;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
@@ -21,7 +24,7 @@ package com.lucee.iosclient.views.views.components.textfields {
 			_textfield = new TextField();
 
 			_textformat.letterSpacing = 13;
-			_textformat.size = 48;
+			_textformat.size = 42;
 			_textformat.align = TextFormatAlign.CENTER;
 
 			_line = new Sprite();
@@ -29,7 +32,7 @@ package com.lucee.iosclient.views.views.components.textfields {
 			_line.graphics.drawRect(0, 0, 550, 2);
 			_line.y = 80;
 			_line.x = 100;
-   
+
 			initialize() ;
 		}
 
@@ -61,6 +64,11 @@ package com.lucee.iosclient.views.views.components.textfields {
 		function redraw() : void {
 			_textfield.setTextFormat(_textformat);
 			_textfield.defaultTextFormat = _textformat;
+		}
+
+		public function hide() : void {
+			TweenLite.to(_textfield, 1.25, {autoAlpha:0, ease:Strong.easeIn});
+			TweenLite.to(_line, 1.25, {transformAroundCenter:{width:0}, ease:Strong.easeIn});
 		}
 		// public function setRightStyle() : void {
 		// _textformat.align = TextFormatAlign.RIGHT;

@@ -1,0 +1,17 @@
+D:\workspace_as3\air-sdk\bin\adt.bat
+-package
+-target
+apk-debug
+-listen
+7937
+-storetype
+pkcs12
+-keystore
+bin/mbadr.p12
+-storepass
+VvfA7g6w4Ys=
+D:/luceehome/ios_client/bin/lucy.apk
+bin/lucy_iosclient-app.xml
+-C
+bin
+lucy.swf

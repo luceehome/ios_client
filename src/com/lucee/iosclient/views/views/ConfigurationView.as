@@ -35,6 +35,9 @@ package com.lucee.iosclient.views.views {
 			_okBtn.y = 750;
 			_okBtn.alpha = 1;
 			addChild(_okBtn);
+			
+			this.width = 540;
+			this.height = 960;
 		}
 
 		public function show() : void {
@@ -45,7 +48,7 @@ package com.lucee.iosclient.views.views {
 		}
 
 		public function hide() : void {
-			TweenLite.to(_ipTF, 1.25, {y:"-80", autoAlpha:0, ease:Strong.easeIn});
+			_ipTF.hide();
 			TweenLite.to(_okBtn, 1.25, {y:"-20", autoAlpha:0, ease:Strong.easeIn, delay:.25});
 			TweenLite.to(_darkOverlay, 1.25, {autoAlpha:0, delay:1.25, ease:Sine.easeOut});
 		}

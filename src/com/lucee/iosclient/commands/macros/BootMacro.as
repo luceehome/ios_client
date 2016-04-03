@@ -21,6 +21,7 @@ package com.lucee.iosclient.commands.macros {
 
 		override public function prepare() : void {
 			Debug.log("BootMacro - init (atomic).");
+			eventDispatcher.dispatchEvent(new ApplicationEvent(ApplicationEvent.SHOW_BOOT, true, false));
 
 			atomic = true;
 			add(StartupCommand);

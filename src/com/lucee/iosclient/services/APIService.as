@@ -18,8 +18,7 @@ package com.lucee.iosclient.services {
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 		private static const HOST_PORT : uint = 3000;
-		private static const HOST_IP : String = "192.168.2.140";
-		
+		private static const HOST_IP : String = "192.168.2.149";
 		private var _urlRequest : URLRequest;
 		private var _urlLoader : URLLoader;
 		private var _apiDataEvent : APIDataEvent;
@@ -69,7 +68,7 @@ package com.lucee.iosclient.services {
 				_urlLoadTimer.stop();
 
 				_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
-				_apiDataEvent.data = "NOTOK_SERVER";
+				_apiDataEvent.data = "NOTOK_SERVER_TIMEOUT";
 				eventDispatcher.dispatchEvent(_apiDataEvent);
 			}
 		}
@@ -80,7 +79,7 @@ package com.lucee.iosclient.services {
 			_urlLoadTimer.stop();
 
 			_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
-			_apiDataEvent.data = "NOTOK_SECURITY";
+			_apiDataEvent.data = "NOTOK_SERVER_SECURITY";
 			eventDispatcher.dispatchEvent(_apiDataEvent);
 		}
 
@@ -89,10 +88,16 @@ package com.lucee.iosclient.services {
 			_urlLoadTimer.removeEventListener(TimerEvent.TIMER, onUrlLoadTimer);
 			_urlLoadTimer.stop();
 
-			_receivedDataJson = parseJson(_urlLoader.data);
-			_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
-			_apiDataEvent.data = _receivedDataJson['data']['status'];
-			eventDispatcher.dispatchEvent(_apiDataEvent);
+			try {
+				_receivedDataJson = parseJson(_urlLoader.data);
+				_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
+				_apiDataEvent.data = _receivedDataJson['data']['status'];
+				eventDispatcher.dispatchEvent(_apiDataEvent);
+			} catch (e : Error) {
+				_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
+				_apiDataEvent.data = "NOTOK_SERVER_DATA";
+				eventDispatcher.dispatchEvent(_apiDataEvent);
+			}
 		}
 
 		private function onStateIOError(event : IOErrorEvent) : void {
@@ -101,7 +106,7 @@ package com.lucee.iosclient.services {
 			_urlLoadTimer.stop();
 
 			_apiDataEvent = new APIDataEvent(APIDataEvent.API_RESPONSE, true, false);
-			_apiDataEvent.data = "NOTOK_SERVER";
+			_apiDataEvent.data = "NOTOK_SERVER_NOTFOUND";
 			eventDispatcher.dispatchEvent(_apiDataEvent);
 		}
 

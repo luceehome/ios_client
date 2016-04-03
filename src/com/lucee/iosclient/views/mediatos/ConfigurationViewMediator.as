@@ -26,19 +26,5 @@ package com.lucee.iosclient.views.mediatos {
 			view.hide();
 			eventDispatcher.dispatchEvent(new ApplicationEvent(ApplicationEvent.BOOT, true, false));
 		}
-
-		private function _onBootFinished(event : ApplicationEvent) : void {
-			switch (apiDataModel.status) {
-				case "OK":
-					break;
-				case "NOTOK_SERVER":
-					// view.changeInfoLabel("RUNNING DEMO");
-					break;
-			}
-		}
-
-		private function onApiResponse(event : APIDataEvent) : void {
-			// view.changeInfoLabel(event.data);
-		}
 	}
 }

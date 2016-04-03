@@ -2,7 +2,7 @@ package com.lucee.iosclient.views.mediatos {
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
 	import com.lucee.iosclient.events.ApplicationEvent;
-	import com.lucee.iosclient.views.views.IPhoneHeaderView;
+	import com.lucee.iosclient.views.views.ApplicationHeaderView;
 
 	import flash.events.MouseEvent;
 
@@ -11,7 +11,7 @@ package com.lucee.iosclient.views.mediatos {
 	 */
 	public class IphoneHeaderMediator extends Mediator {
 		 [Inject]
-		 public var view:IPhoneHeaderView;
+		 public var view:ApplicationHeaderView;
 		 
 
 		 
