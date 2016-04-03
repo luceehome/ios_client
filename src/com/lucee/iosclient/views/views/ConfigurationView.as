@@ -35,9 +35,6 @@ package com.lucee.iosclient.views.views {
 			_okBtn.y = 750;
 			_okBtn.alpha = 1;
 			addChild(_okBtn);
-			
-			this.width = 540;
-			this.height = 960;
 		}
 
 		public function show() : void {

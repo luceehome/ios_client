@@ -34,10 +34,6 @@ package com.lucee.iosclient.views.views {
 			addChild(_deviceView);
 			addChild(_mainMenuView);
 			addChild(_headerView);
-
-			this.width = 1080;
-			this.width = 540;
-			this.height = 960;
 		}
 
 		private function enableSwipe() : void {

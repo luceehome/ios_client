@@ -18,7 +18,7 @@ package com.lucee.iosclient.services {
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 		private static const HOST_PORT : uint = 3000;
-		private static const HOST_IP : String = "192.168.2.149";
+		private static const HOST_IP : String = "192.168.2.120";
 		private var _urlRequest : URLRequest;
 		private var _urlLoader : URLLoader;
 		private var _apiDataEvent : APIDataEvent;

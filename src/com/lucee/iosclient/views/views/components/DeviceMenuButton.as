@@ -51,7 +51,7 @@ package com.lucee.iosclient.views.views.components {
 
 			_lampOffAssetBitmap = new Bitmap(new AssetDeviceLampOff());
 			_lampOffAsset = new Sprite();
-			_lampOffAsset.addEventListener(MouseEvent.CLICK, onLampOffClick);
+			_lampOffAsset.addEventListener(MouseEvent.CLICK, onLampOnClick);
 			_lampOffAsset.x = 640;
 			_lampOffAsset.y = 44;
 			_lampOffAsset.addChild(_lampOffAssetBitmap);
@@ -64,16 +64,12 @@ package com.lucee.iosclient.views.views.components {
 		}
 
 		private function onLampOnClick(event : MouseEvent) : void {
-			var ur : URLRequest = new URLRequest("http://192.168.2.147:3000/api/cmd");
+			trace('onLampOnClick: ' + (onLampOnClick));
+			var ur : URLRequest = new URLRequest("http://192.168.2.120:3000/api/cmd");
 			ur.method = URLRequestMethod.POST;
-			var cmdObject : Object = new Object();
-			cmdObject['cmd'] = "hallo alexei";
-			var messages : Array = new Array();
-			messages.push({"nombreArchivo":"value"});
-			messages.push({"image":"value"});
 
 			var vars: URLVariables = new URLVariables();
-			vars.cmd = "set Kugellampe on"
+			vars.cmd = "set Stehlampe off"
 			
 			ur.data = vars;
 

@@ -26,7 +26,7 @@ package com.lucee.iosclient {
 		private var _context : IContext;
 		TweenPlugin.activate([AutoAlphaPlugin, ThrowPropsPlugin, TransformAroundCenterPlugin]);
 		public function Lucy() {
-			stage.scaleMode = StageScaleMode.SHOW_ALL;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			Multitouch.inputMode = MultitouchInputMode.GESTURE;
 
@@ -34,13 +34,13 @@ package com.lucee.iosclient {
 			_context = new Context()
 				.install(MVCSBundle)
 				.configure(LucyConfig, _contextView);
-			
+
 			trace(_contextView.view.stage.stageWidth);
 
-//			if (Capabilities.os.search("iPhone") < 0) {
-//			_contextView.view.scaleX = 0.5;
-//			_contextView.view.scaleY = 0.5;
-//			}
+			if (Capabilities.os.search("iPhone") < 0) {
+				_contextView.view.scaleX = 0.5;
+				_contextView.view.scaleY = 0.5;
+			}
 		}
 	}
 }
